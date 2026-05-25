@@ -2,11 +2,19 @@ import { useState } from "react";
 
 import MainLayout from "../layouts/MainLayout";
 
-import { addProduct } from "../services/productService";
+import {
+  addProduct
+} from "../services/productService";
 
-import OCRUploader from "../components/OCRUploader";
+import {
+  importExcel
+} from "../services/importService";
 
-import BarcodeScanner from "../components/BarcodeScanner";
+import OCRUploader
+from "../components/OCRUploader";
+
+import BarcodeScanner
+from "../components/BarcodeScanner";
 
 export default function Products() {
 
@@ -54,6 +62,30 @@ export default function Products() {
         ...prev,
         barcode: code
       }));
+
+  };
+
+  const handleExcelImport =
+    async (e) => {
+
+      const file =
+        e.target.files[0];
+
+      if (!file) return;
+
+      try {
+
+        await importExcel(file);
+
+        alert(
+          "Productos importados"
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
 
   };
 
@@ -105,6 +137,31 @@ export default function Products() {
         <BarcodeScanner
           onScan={handleBarcodeScan}
         />
+
+        <div className="mb-6">
+
+          <label className="
+            block
+            mb-2
+            font-bold
+          ">
+            Importar Excel
+          </label>
+
+          <input
+            type="file"
+            accept=".xlsx,.xls"
+            onChange={handleExcelImport}
+            className="
+              w-full
+              border
+              p-3
+              rounded-lg
+              bg-white
+            "
+          />
+
+        </div>
 
         <form
           onSubmit={handleSubmit}
