@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import MainLayout from "../layouts/MainLayout";
+import MainLayout
+from "../layouts/MainLayout";
 
 import { addProduct }
 from "../services/productService";
@@ -22,8 +23,10 @@ export default function Products() {
       minStock: "",
       expirationDate: ""
     });
-const [qrDebug, setQrDebug] =
-  useState("");
+
+  const [qrDebug, setQrDebug] =
+    useState("");
+
   const handleChange = (e) => {
 
     setProduct({
@@ -62,22 +65,24 @@ const [qrDebug, setQrDebug] =
         const cleanCode =
           code.trim();
 
-const values =
-  cleanCode
-    .replace(/\n/g, ",")
-    .replace(/;/g, ",")
-    .split(",");
+        setQrDebug(cleanCode);
 
-console.log(
-  "QR:",
-  cleanCode
-);
+        const values =
+          cleanCode
+            .replace(/\n/g, ",")
+            .replace(/;/g, ",")
+            .split(",");
 
-console.log(
-  "VALUES:",
-  values
-);
-            
+        console.log(
+          "QR:",
+          cleanCode
+        );
+
+        console.log(
+          "VALUES:",
+          values
+        );
+
         if (
           values.length < 5
         ) {
@@ -90,27 +95,27 @@ console.log(
 
         }
 
-setProduct((prev) => ({
-  ...prev,
+        setProduct((prev) => ({
+          ...prev,
 
-  name:
-    values[0]?.trim() || "",
+          name:
+            values[0]?.trim() || "",
 
-  barcode:
-    cleanCode,
+          barcode:
+            cleanCode,
 
-  quantity:
-    values[2]?.trim() || "",
+          quantity:
+            values[2]?.trim() || "",
 
-  price:
-    values[1]?.trim() || "",
+          price:
+            values[1]?.trim() || "",
 
-  minStock:
-    values[3]?.trim() || "",
+          minStock:
+            values[3]?.trim() || "",
 
-  expirationDate:
-    values[4]?.trim() || ""
-}));
+          expirationDate:
+            values[4]?.trim() || ""
+        }));
 
       } catch (error) {
 
@@ -182,6 +187,23 @@ setProduct((prev) => ({
             handleBarcodeScan
           }
         />
+
+        <div className="
+          bg-yellow-100
+          p-3
+          rounded-lg
+          mb-4
+          text-sm
+          break-all
+        ">
+          <strong>
+            QR leído:
+          </strong>
+
+          <br />
+
+          {qrDebug}
+        </div>
 
         <form
           onSubmit={
