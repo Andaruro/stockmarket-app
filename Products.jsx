@@ -61,9 +61,22 @@ export default function Products() {
         const cleanCode =
           code.trim();
 
-        const values =
-          cleanCode.split(",");
+const values =
+  cleanCode
+    .replace(/\n/g, ",")
+    .replace(/;/g, ",")
+    .split(",");
 
+console.log(
+  "QR:",
+  cleanCode
+);
+
+console.log(
+  "VALUES:",
+  values
+);
+            
         if (
           values.length < 5
         ) {
@@ -76,25 +89,27 @@ export default function Products() {
 
         }
 
-        setProduct({
-          name:
-            values[0]?.trim() || "",
+setProduct((prev) => ({
+  ...prev,
 
-          barcode:
-            cleanCode,
+  name:
+    values[0]?.trim() || "",
 
-          quantity:
-            values[2]?.trim() || "",
+  barcode:
+    cleanCode,
 
-          price:
-            values[1]?.trim() || "",
+  quantity:
+    values[2]?.trim() || "",
 
-          minStock:
-            values[3]?.trim() || "",
+  price:
+    values[1]?.trim() || "",
 
-          expirationDate:
-            values[4]?.trim() || ""
-        });
+  minStock:
+    values[3]?.trim() || "",
+
+  expirationDate:
+    values[4]?.trim() || ""
+}));
 
       } catch (error) {
 
