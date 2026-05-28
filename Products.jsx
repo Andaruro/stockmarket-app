@@ -54,59 +54,62 @@ export default function Products() {
   };
 
   const handleBarcodeScan =
-    (code) => {
+  (code) => {
 
-      try {
+    try {
 
-        const cleanCode =
-          code.trim();
+      const cleanCode =
+        code.trim();
 
-        const values =
-          cleanCode.split(",");
+      const values =
+        cleanCode.split(",");
 
-        if (
-          values.length < 5
-        ) {
+      if (values.length < 5) {
 
-          alert(
-            "Formato QR inválido"
-          );
-
-          return;
-
-        }
-
-        setProduct({
-          name:
-            values[0].trim(),
-
-          barcode:
-            cleanCode,
-
-          price:
-            values[1].trim(),
-
-          quantity:
-            values[2].trim(),
-
-          minStock:
-            values[3].trim(),
-
-          expirationDate:
-            values[4].trim()
-        });
-
-      } catch (error) {
-
-        console.error(
-          "QR inválido",
-          error
+        alert(
+          "Formato QR inválido"
         );
+
+        return;
 
       }
 
-    };
+      setFormData({
+        name:
+          values[0]?.trim() || "",
 
+        barcode:
+          cleanCode,
+
+        price:
+          Number(
+            values[1]
+          ) || 0,
+
+        quantity:
+          Number(
+            values[2]
+          ) || 0,
+
+        minStock:
+          Number(
+            values[3]
+          ) || 0,
+
+        expirationDate:
+          values[4]?.trim() || ""
+      });
+
+    } catch (error) {
+
+      console.error(
+        "QR inválido",
+        error
+      );
+
+    }
+
+};
   const handleSubmit =
     async (e) => {
 
