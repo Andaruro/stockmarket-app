@@ -22,7 +22,8 @@ export default function Products() {
       minStock: "",
       expirationDate: ""
     });
-
+const [qrDebug, setQrDebug] =
+  useState("");
   const handleChange = (e) => {
 
     setProduct({
