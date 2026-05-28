@@ -54,62 +54,59 @@ export default function Products() {
   };
 
   const handleBarcodeScan =
-  (code) => {
+    (code) => {
 
-    try {
+      try {
 
-      const cleanCode =
-        code.trim();
+        const cleanCode =
+          code.trim();
 
-      const values =
-        cleanCode.split(",");
+        const values =
+          cleanCode.split(",");
 
-      if (values.length < 5) {
+        if (
+          values.length < 5
+        ) {
 
-        alert(
-          "Formato QR inválido"
+          alert(
+            "Formato QR inválido"
+          );
+
+          return;
+
+        }
+
+        setProduct({
+          name:
+            values[0]?.trim() || "",
+
+          barcode:
+            cleanCode,
+
+          quantity:
+            values[2]?.trim() || "",
+
+          price:
+            values[1]?.trim() || "",
+
+          minStock:
+            values[3]?.trim() || "",
+
+          expirationDate:
+            values[4]?.trim() || ""
+        });
+
+      } catch (error) {
+
+        console.error(
+          "QR inválido",
+          error
         );
-
-        return;
 
       }
 
-      setFormData({
-        name:
-          values[0]?.trim() || "",
+    };
 
-        barcode:
-          cleanCode,
-
-        price:
-          Number(
-            values[1]
-          ) || 0,
-
-        quantity:
-          Number(
-            values[2]
-          ) || 0,
-
-        minStock:
-          Number(
-            values[3]
-          ) || 0,
-
-        expirationDate:
-          values[4]?.trim() || ""
-      });
-
-    } catch (error) {
-
-      console.error(
-        "QR inválido",
-        error
-      );
-
-    }
-
-};
   const handleSubmit =
     async (e) => {
 
@@ -182,9 +179,7 @@ export default function Products() {
           "
         >
 
-          <div className="
-            mb-4
-          ">
+          <div className="mb-4">
 
             <label className="
               block mb-2
@@ -196,9 +191,7 @@ export default function Products() {
               type="text"
               name="name"
               value={product.name}
-              onChange={
-                handleChange
-              }
+              onChange={handleChange}
               className="
                 w-full
                 border
@@ -210,9 +203,7 @@ export default function Products() {
 
           </div>
 
-          <div className="
-            mb-4
-          ">
+          <div className="mb-4">
 
             <label className="
               block mb-2
@@ -223,12 +214,8 @@ export default function Products() {
             <input
               type="text"
               name="barcode"
-              value={
-                product.barcode
-              }
-              onChange={
-                handleChange
-              }
+              value={product.barcode}
+              onChange={handleChange}
               className="
                 w-full
                 border
@@ -239,9 +226,7 @@ export default function Products() {
 
           </div>
 
-          <div className="
-            mb-4
-          ">
+          <div className="mb-4">
 
             <label className="
               block mb-2
@@ -252,12 +237,8 @@ export default function Products() {
             <input
               type="number"
               name="quantity"
-              value={
-                product.quantity
-              }
-              onChange={
-                handleChange
-              }
+              value={product.quantity}
+              onChange={handleChange}
               className="
                 w-full
                 border
@@ -269,9 +250,7 @@ export default function Products() {
 
           </div>
 
-          <div className="
-            mb-4
-          ">
+          <div className="mb-4">
 
             <label className="
               block mb-2
@@ -282,12 +261,8 @@ export default function Products() {
             <input
               type="number"
               name="minStock"
-              value={
-                product.minStock
-              }
-              onChange={
-                handleChange
-              }
+              value={product.minStock}
+              onChange={handleChange}
               className="
                 w-full
                 border
@@ -299,9 +274,7 @@ export default function Products() {
 
           </div>
 
-          <div className="
-            mb-4
-          ">
+          <div className="mb-4">
 
             <label className="
               block mb-2
@@ -312,12 +285,8 @@ export default function Products() {
             <input
               type="number"
               name="price"
-              value={
-                product.price
-              }
-              onChange={
-                handleChange
-              }
+              value={product.price}
+              onChange={handleChange}
               className="
                 w-full
                 border
@@ -329,9 +298,7 @@ export default function Products() {
 
           </div>
 
-          <div className="
-            mb-6
-          ">
+          <div className="mb-6">
 
             <label className="
               block mb-2
@@ -345,9 +312,7 @@ export default function Products() {
               value={
                 product.expirationDate
               }
-              onChange={
-                handleChange
-              }
+              onChange={handleChange}
               className="
                 w-full
                 border
@@ -380,5 +345,3 @@ export default function Products() {
     </MainLayout>
   );
 }
-
-};
