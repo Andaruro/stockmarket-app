@@ -36,11 +36,43 @@ export default function Products() {
     }
   };
 
-  const handleBarcodeScan = (code) => {
-    setProduct((prev) => ({ ...prev, barcode: code }));
-    showFeedback("success", `Código capturado: ${code}`);
-    setActiveTool(null);
-  };
+const handleBarcodeScan =
+  (code) => {
+
+    try {
+
+      const values =
+        code.split(",");
+
+      setProduct({
+        name:
+          values[0] || "",
+
+        barcode: code,
+
+        price:
+          values[1] || "",
+
+        quantity:
+          values[2] || "",
+
+        minStock:
+          values[3] || "",
+
+        expirationDate:
+          values[4] || ""
+      });
+
+    } catch (error) {
+
+      console.error(
+        "QR inválido",
+        error
+      );
+
+    }
+
+};
 
   const handleExcelImport = async (e) => {
     const file = e.target.files[0];
