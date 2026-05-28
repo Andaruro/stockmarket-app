@@ -1,4 +1,4 @@
-import { useEffect, useRef }
+import { useEffect }
 from "react";
 
 import {
@@ -8,9 +8,6 @@ import {
 export default function BarcodeScanner({
   onScan
 }) {
-
-  const scannedRef =
-    useRef(false);
 
   useEffect(() => {
 
@@ -26,21 +23,16 @@ export default function BarcodeScanner({
 
     scanner.render(
 
-      (decodedText) => {
-
-        if (
-          scannedRef.current
-        ) return;
-
-        scannedRef.current =
-          true;
+      async (decodedText) => {
 
         console.log(
-          "QR leído:",
+          "QR LEÍDO:",
           decodedText
         );
 
         onScan(decodedText);
+
+        await scanner.clear();
 
       },
 
@@ -55,7 +47,7 @@ export default function BarcodeScanner({
 
     };
 
-  }, [onScan]);
+  }, []);
 
   return (
 
