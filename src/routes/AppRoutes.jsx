@@ -57,6 +57,14 @@ export default function AppRoutes() {
           path="/login"
           element={<Login />}
         />
+        <Route
+          path="/scan"
+          element={
+          <ProtectedRoute>
+            <Scan />
+          </ProtectedRoute>
+  }
+/>
 
       </Routes>
 
