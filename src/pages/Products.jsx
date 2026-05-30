@@ -36,11 +36,81 @@ export default function Products() {
     }
   };
 
-  const handleBarcodeScan = (code) => {
+  /*const handleBarcodeScan = (code) => {
     setProduct((prev) => ({ ...prev, barcode: code }));
-    showFeedback("success", `Código regsitrado: ${code}`);
+    showFeedback("success", `Código registrado: ${code}`);
     setActiveTool(null);
-  };
+  };*/
+    const handleBarcodeScan =
+    (code) => {
+
+      try {
+
+        const cleanCode =
+          code.trim();
+
+        setQrDebug(cleanCode);
+
+        const values =
+          cleanCode
+            .replace(/\n/g, ",")
+            .replace(/;/g, ",")
+            .split(",");
+
+        console.log(
+          "QR:",
+          cleanCode
+        );
+
+        console.log(
+          "VALUES:",
+          values
+        );
+
+        if (
+          values.length < 5
+        ) {
+
+          alert(
+            "Formato QR inválido"
+          );
+
+          return;
+
+        }
+
+        setProduct((prev) => ({
+          ...prev,
+
+          name:
+            values[0]?.trim() || "",
+
+          barcode:
+            cleanCode,
+
+          quantity:
+            values[2]?.trim() || "",
+
+          price:
+            values[1]?.trim() || "",
+
+          minStock:
+            values[3]?.trim() || "",
+
+          expirationDate:
+            values[4]?.trim() || ""
+        }));
+
+      } catch (error) {
+
+        console.error(
+          "QR inválido",
+          error
+        );
+
+      }
+
+    };
 
   const handleExcelImport = async (e) => {
     const file = e.target.files[0];
