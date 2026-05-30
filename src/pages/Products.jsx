@@ -38,7 +38,7 @@ export default function Products() {
 
   const handleBarcodeScan = (code) => {
     setProduct((prev) => ({ ...prev, barcode: code }));
-    showFeedback("success", `Código capturado: ${code}`);
+    showFeedback("success", `Código regsitrado: ${code}`);
     setActiveTool(null);
   };
 
