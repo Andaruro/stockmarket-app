@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* ================================
+   THEME VARIABLES
+   ================================ */
+:root {
+  --brand-500: #6366f1;
+  --brand-600: #4f46e5;
+  --accent-500: #14b8a6;
+  --bg-app: #f6f7fb;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body, #root { height: 100%; margin: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background:
+    radial-gradient(1200px 600px at -10% -10%, rgba(99,102,241,0.08), transparent 60%),
+    radial-gradient(900px 500px at 110% 0%, rgba(45,212,191,0.07), transparent 60%),
+    var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Sora', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* ================================
+   COMPONENT CLASSES
+   In Tailwind v4 use @utility or
+   plain CSS - plain CSS is simpler
+   ================================ */
+
+/* ---- Cards ---- */
+.sm-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 1px 3px rgba(15,23,42,0.06);
+  transition: box-shadow 0.2s ease;
+}
+.sm-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(15,23,42,0.08), 0 2px 4px -2px rgba(15,23,42,0.06);
+}
+
+/* ---- Inputs ---- */
+.sm-input {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(15, 23, 42, 0.10);
+  background: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-family: inherit;
+  color: #0f172a;
+  transition: all 0.15s ease;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.sm-input::placeholder { color: #94a3b8; }
+.sm-input:hover { border-color: rgba(15, 23, 42, 0.16); }
+.sm-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.sm-label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Buttons ---- */
+.sm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.sm-btn:active { transform: translateY(1px); }
+
+.sm-btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+.sm-btn-primary:hover {
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  transform: translateY(-1px);
+}
+
+.sm-btn-secondary {
+  background: #f1f3f9;
+  color: #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+.sm-btn-secondary:hover { background: #e6e9f2; }
+
+.sm-btn-success {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+.sm-btn-danger {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
+}
+.sm-btn-warning {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: white;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+}
+.sm-btn-ghost {
+  background: transparent;
+  color: #475569;
+}
+.sm-btn-ghost:hover {
+  background: #f1f3f9;
+  color: #0f172a;
+}
+
+.sm-btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+/* ---- Chips ---- */
+.sm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.sm-chip-success { background: #d1fae5; color: #065f46; }
+.sm-chip-warning { background: #fef3c7; color: #92400e; }
+.sm-chip-danger  { background: #fee2e2; color: #991b1b; }
+.sm-chip-info    { background: #dbeafe; color: #1e40af; }
+
+/* ================================
+   SCROLLBAR
+   ================================ */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.15); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(15, 23, 42, 0.25); }
+
+/* ================================
+   ANIMATIONS
+   ================================ */
+@keyframes sm-fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sm-pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.45); }
+  50%      { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+
+@keyframes sm-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.sm-fade-in { animation: sm-fadeInUp 0.35s ease both; }
+
+.sm-stagger > * { animation: sm-fadeInUp 0.4s ease both; }
+.sm-stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.sm-stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.sm-stagger > *:nth-child(3) { animation-delay: 0.16s; }
+.sm-stagger > *:nth-child(4) { animation-delay: 0.22s; }
+.sm-stagger > *:nth-child(5) { animation-delay: 0.28s; }
+.sm-stagger > *:nth-child(6) { animation-delay: 0.34s; }
+
+.sm-pulse-danger { animation: sm-pulseGlow 2s infinite; }
+
+.sm-skeleton {
+  background: linear-gradient(90deg, #f1f3f9 0%, #e6e9f2 50%, #f1f3f9 100%);
+  background-size: 200% 100%;
+  animation: sm-shimmer 1.4s linear infinite;
+}
+
+.sm-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
