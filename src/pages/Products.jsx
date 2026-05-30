@@ -43,13 +43,13 @@ export default function Products() {
   };*/
     const handleBarcodeScan =
     (code) => {
-
+      showFeedback("success", `Código registrado: ${code}`);
       try {
 
         const cleanCode =
           code.trim();
 
-        setQrDebug(cleanCode);
+        //setQrDebug(cleanCode);
 
         const values =
           cleanCode
